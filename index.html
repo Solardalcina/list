@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Lista de Compras</title>
+    <style>
+    .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .item button {
+        margin: 0 10px;
+        padding: 10px 15px; /* Aumenta o padding do botão */
+        font-size: 18px;    /* Aumenta o tamanho da fonte */
+    }
+
+    .item input[type="number"] {
+        width: 50px;
+        padding: 8px;
+        font-size: 18px;    /* Aumenta o tamanho da fonte */
+    }
+
+    .categoria {
+        margin-top: 25px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 15px;
+    }
+
+    /* Estilos específicos para telas com largura até 480px (tipicamente smartphones) */
+    @media (max-width: 480px) {
+        .item button {
+            margin: 0 8px;
+            padding: 12px 18px; /* Aumenta ainda mais o padding do botão */
+        }
+
+        .item input[type="number"] {
+            width: 60px;
+            padding: 10px;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+    <form id="listaComprasForm">
+        <h2>Formulário de Lista de Compras</h2>
+
+        <!-- Categoria: Dia a Dia -->
+        <div class="categoria">
+            <h3>Café da Manhã</h3>
+            <div class="item">
+            <button type="button" onclick="decrementar('Mussarela')">-</button>
+            <input type="number" id="Mussarela" name="Mussarela" value="0" readonly>
+            <button type="button" onclick="incrementar('Mussarela')">+</button>
+            <label for="Mussarela">Mussarela</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Queijo prato')">-</button>
+            <input type="number" id="Queijo prato" name="Queijo prato" value="0" readonly>
+            <button type="button" onclick="incrementar('Queijo prato')">+</button>
+            <label for="Queijo prato">Queijo prato</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Queijo Minas')">-</button>
+            <input type="number" id="Queijo Minas" name="Queijo Minas" value="0" readonly>
+            <button type="button" onclick="incrementar('Queijo Minas')">+</button>
+            <label for="Queijo Minas">Queijo Minas</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Requeijao')">-</button>
+            <input type="number" id="Requeijao" name="Requeijao" value="0" readonly>
+            <button type="button" onclick="incrementar('Requeijao')">+</button>
+            <label for="Requeijao">Requeijao</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Manteiga')">-</button>
+            <input type="number" id="Manteiga" name="Manteiga" value="0" readonly>
+            <button type="button" onclick="incrementar('Manteiga')">+</button>
+            <label for="Manteiga">Manteiga</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Milk Mix')">-</button>
+            <input type="number" id="Milk Mix" name="Milk Mix" value="0" readonly>
+            <button type="button" onclick="incrementar('Milk Mix')">+</button>
+            <label for="Milk Mix">Milk Mix</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Pão de queijo')">-</button>
+            <input type="number" id="Pão de queijo" name="Pão de queijo" value="0" readonly>
+            <button type="button" onclick="incrementar('Pão de queijo')">+</button>
+            <label for="Pão de queijo">Pão de queijo</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Abacaxi')">-</button>
+            <input type="number" id="Abacaxi" name="Abacaxi" value="0" readonly>
+            <button type="button" onclick="incrementar('Abacaxi')">+</button>
+            <label for="Abacaxi">Abacaxi</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Hortelã')">-</button>
+            <input type="number" id="Hortelã" name="Hortelã" value="0" readonly>
+            <button type="button" onclick="incrementar('Hortelã')">+</button>
+            <label for="Hortelã">Hortelã</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Mamão')">-</button>
+            <input type="number" id="Mamão" name="Mamão" value="0" readonly>
+            <button type="button" onclick="incrementar('Mamão')">+</button>
+            <label for="Mamão">Mamão</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Melão')">-</button>
+            <input type="number" id="Melão" name="Melão" value="0" readonly>
+            <button type="button" onclick="incrementar('Melão')">+</button>
+            <label for="Melão">Melão</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Banana')">-</button>
+            <input type="number" id="Banana" name="Banana" value="0" readonly>
+            <button type="button" onclick="incrementar('Banana')">+</button>
+            <label for="Banana">Banana</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Maracujá')">-</button>
+            <input type="number" id="Maracujá" name="Maracujá" value="0" readonly>
+            <button type="button" onclick="incrementar('Maracujá')">+</button>
+            <label for="Maracujá">Maracujá</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Tomate')">-</button>
+            <input type="number" id="Tomate" name="Tomate" value="0" readonly>
+            <button type="button" onclick="incrementar('Tomate')">+</button>
+            <label for="Tomate">Tomate</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Manga')">-</button>
+            <input type="number" id="Manga" name="Manga" value="0" readonly>
+            <button type="button" onclick="incrementar('Manga')">+</button>
+            <label for="Manga">Manga</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Uva')">-</button>
+            <input type="number" id="Uva" name="Uva" value="0" readonly>
+            <button type="button" onclick="incrementar('Uva')">+</button>
+            <label for="Uva">Uva</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Maçã')">-</button>
+            <input type="number" id="Maçã" name="Maçã" value="0" readonly>
+            <button type="button" onclick="incrementar('Maçã')">+</button>
+            <label for="Maçã">Maçã</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Pêra')">-</button>
+            <input type="number" id="Pêra" name="Pêra" value="0" readonly>
+            <button type="button" onclick="incrementar('Pêra')">+</button>
+            <label for="Pêra">Pêra</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Açucar')">-</button>
+            <input type="number" id="Açucar" name="Açucar" value="0" readonly>
+            <button type="button" onclick="incrementar('Açucar')">+</button>
+            <label for="Açucar">Açucar</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Açucar sachê')">-</button>
+            <input type="number" id="Açucar sachê" name="Açucar sachê" value="0" readonly>
+            <button type="button" onclick="incrementar('Açucar sachê')">+</button>
+            <label for="Açucar sachê">Açucar sachê</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Geléia')">-</button>
+            <input type="number" id="Geléia" name="Geléia" value="0" readonly>
+            <button type="button" onclick="incrementar('Geléia')">+</button>
+            <label for="Geléia">Geléia</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Sucrilhos')">-</button>
+            <input type="number" id="Sucrilhos" name="Sucrilhos" value="0" readonly>
+            <button type="button" onclick="incrementar('Sucrilhos')">+</button>
+            <label for="Sucrilhos">Sucrilhos</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Granola')">-</button>
+            <input type="number" id="Granola" name="Granola" value="0" readonly>
+            <button type="button" onclick="incrementar('Granola')">+</button>
+            <label for="Granola">Granola</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Pão de forma')">-</button>
+            <input type="number" id="Pão de forma" name="Pão de forma" value="0" readonly>
+            <button type="button" onclick="incrementar('Pão de forma')">+</button>
+            <label for="Pão de forma">Pão de forma</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Pão integral')">-</button>
+            <input type="number" id="Pão integral" name="Pão integral" value="0" readonly>
+            <button type="button" onclick="incrementar('Pão integral')">+</button>
+            <label for="Pão integral">Pão integral</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Ovos')">-</button>
+            <input type="number" id="Ovos" name="Ovos" value="0" readonly>
+            <button type="button" onclick="incrementar('Ovos')">+</button>
+            <label for="Ovos">Ovos</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Massa de tapioca')">-</button>
+            <input type="number" id="Massa de tapioca" name="Massa de tapioca" value="0" readonly>
+            <button type="button" onclick="incrementar('Massa de tapioca')">+</button>
+            <label for="Massa de tapioca">Massa de tapioca</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Nescau')">-</button>
+            <input type="number" id="Nescau" name="Nescau" value="0" readonly>
+            <button type="button" onclick="incrementar('Nescau')">+</button>
+            <label for="Nescau">Nescau</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Toddy')">-</button>
+            <input type="number" id="Toddy" name="Toddy" value="0" readonly>
+            <button type="button" onclick="incrementar('Toddy')">+</button>
+            <label for="Toddy">Toddy</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Aveia')">-</button>
+            <input type="number" id="Aveia" name="Aveia" value="0" readonly>
+            <button type="button" onclick="incrementar('Aveia')">+</button>
+            <label for="Aveia">Aveia</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Papel Toalha')">-</button>
+            <input type="number" id="Papel Toalha" name="Papel Toalha" value="0" readonly>
+            <button type="button" onclick="incrementar('Papel Toalha')">+</button>
+            <label for="Papel Toalha">Papel Toalha</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Guardanapo')">-</button>
+            <input type="number" id="Guardanapo" name="Guardanapo" value="0" readonly>
+            <button type="button" onclick="incrementar('Guardanapo')">+</button>
+            <label for="Guardanapo">Guardanapo</label>
+        </div>
+        </div>
+
+        <!-- Categoria: Limpeza -->
+        <div class="categoria">
+            <h3>Limpeza</h3>
+            <div class="item">
+                <button type="button" onclick="decrementar('Papel higienico')">-</button>
+                <input type="number" id="Papel higienico" name="Papel higienico" value="0" readonly>
+                <button type="button" onclick="incrementar('Papel higienico')">+</button>
+                <label for="Papel higienico">Papel higienico</label>
+            </div>
+            <div class="item">
+                <button type="button" onclick="decrementar('Sabão em pó')">-</button>
+                <input type="number" id="Sabão em pó" name="Sabão em pó" value="0" readonly>
+                <button type="button" onclick="incrementar('Sabão em pó')">+</button>
+                <label for="Sabão em pó">Sabão em pó</label>
+            </div>
+            <div class="item">
+            <button type="button" onclick="decrementar('Cera Liquida')">-</button>
+            <input type="number" id="Cera Liquida" name="Cera Liquida" value="0" readonly>
+            <button type="button" onclick="incrementar('Cera Liquida')">+</button>
+            <label for="Cera Liquida">Cera Liquida</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Lustra Moveis')">-</button>
+            <input type="number" id="Lustra Moveis" name="Lustra Moveis" value="0" readonly>
+            <button type="button" onclick="incrementar('Lustra Moveis')">+</button>
+            <label for="Lustra Moveis">Lustra Moveis</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Limpa Vidros')">-</button>
+            <input type="number" id="Limpa Vidros" name="Limpa Vidros" value="0" readonly>
+            <button type="button" onclick="incrementar('Limpa Vidros')">+</button>
+            <label for="Limpa Vidros">Limpa Vidros</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Detergente')">-</button>
+            <input type="number" id="Detergente" name="Detergente" value="0" readonly>
+            <button type="button" onclick="incrementar('Detergente')">+</button>
+            <label for="Detergente">Detergente</label>
+        </div>
+        <div class="item">
+            <button type="button" onclick="decrementar('Alcool')">-</button>
+            <input type="number" id="Alcool" name="Alcool" value="0" readonly>
+            <button type="button" onclick="incrementar('Alcool')">+</button>
+            <label for="Alcool">Alcool</label>
+        </div>
+        </div>
+        
+
+        <input type="submit" value="Gerar Lista">
+    </form>
+
+    <script>
+        function incrementar(id) {
+            const input = document.getElementById(id);
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrementar(id) {
+            const input = document.getElementById(id);
+            if (parseInt(input.value) > 0) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        document.getElementById('listaComprasForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const itens = [{
+                    nomeSimples: 'Mussarela',
+                    nomeDetalhado: 'Mussarela',
+                    quantidade: document.getElementById('Mussarela').value
+                },
+                {
+                    nomeSimples: 'Queijo prato',
+                    nomeDetalhado: 'Queijo prato',
+                    quantidade: document.getElementById('Queijo prato').value
+                },
+                {
+                    nomeSimples: 'Queijo Minas',
+                    nomeDetalhado: 'Queijo Minas',
+                    quantidade: document.getElementById('Queijo Minas').value
+                },
+                {
+                    nomeSimples: 'Requeijao',
+                    nomeDetalhado: 'Requeijao',
+                    quantidade: document.getElementById('Requeijao').value
+                },
+                 {
+                    nomeSimples: 'Milk Mix',
+                    nomeDetalhado: 'Milk Mix',
+                    quantidade: document.getElementById('Milk Mix').value
+                },
+                 {
+                    nomeSimples: 'Pão de queijo',
+                    nomeDetalhado: 'Pão de queijo',
+                    quantidade: document.getElementById('Pão de queijo').value
+                },
+                {
+                    nomeSimples: 'Manteiga',
+                    nomeDetalhado: 'Manteiga',
+                    quantidade: document.getElementById('Manteiga').value
+                },
+                 {
+                    nomeSimples: 'Abacaxi',
+                    nomeDetalhado: 'Abacaxi',
+                    quantidade: document.getElementById('Abacaxi').value
+                },
+                 {
+                    nomeSimples: 'Hortelã',
+                    nomeDetalhado: 'Hortelã',
+                    quantidade: document.getElementById('Hortelã').value
+                },
+                 {
+                    nomeSimples: 'Mamão',
+                    nomeDetalhado: 'Mamão',
+                    quantidade: document.getElementById('Mamão').value
+                },
+                 {
+                    nomeSimples: 'Melão',
+                    nomeDetalhado: 'Melão',
+                    quantidade: document.getElementById('Melão').value
+                },
+                 {
+                    nomeSimples: 'Banana',
+                    nomeDetalhado: 'Banana',
+                    quantidade: document.getElementById('Banana').value
+                },
+                 {
+                    nomeSimples: 'Maracujá',
+                    nomeDetalhado: 'Maracujá',
+                    quantidade: document.getElementById('Maracujá').value
+                },
+                 {
+                    nomeSimples: 'Tomate',
+                    nomeDetalhado: 'Tomate',
+                    quantidade: document.getElementById('Tomate').value
+                },
+                 {
+                    nomeSimples: 'Manga',
+                    nomeDetalhado: 'Manga',
+                    quantidade: document.getElementById('Manga').value
+                },
+                 {
+                    nomeSimples: 'Uva',
+                    nomeDetalhado: 'Uva',
+                    quantidade: document.getElementById('Uva').value
+                },
+                 {
+                    nomeSimples: 'Maçã',
+                    nomeDetalhado: 'Maçã',
+                    quantidade: document.getElementById('Maçã').value
+                },
+                 {
+                    nomeSimples: 'Pêra',
+                    nomeDetalhado: 'Pêra',
+                    quantidade: document.getElementById('Pêra').value
+                },
+                 {
+                    nomeSimples: 'Açucar',
+                    nomeDetalhado: 'Açucar',
+                    quantidade: document.getElementById('Açucar').value
+                },
+                 {
+                    nomeSimples: 'Açucar sachê',
+                    nomeDetalhado: 'Açucar sachê',
+                    quantidade: document.getElementById('Açucar sachê').value
+                },
+                {
+                    nomeSimples: 'Geléia',
+                    nomeDetalhado: 'Geléia',
+                    quantidade: document.getElementById('Geléia').value
+                },
+                {
+                    nomeSimples: 'Sucrilhos',
+                    nomeDetalhado: 'Sucrilhos',
+                    quantidade: document.getElementById('Sucrilhos').value
+                },
+                {
+                    nomeSimples: 'Granola',
+                    nomeDetalhado: 'Granola',
+                    quantidade: document.getElementById('Granola').value
+                },
+                {
+                    nomeSimples: 'Pão de forma',
+                    nomeDetalhado: 'Pão de forma',
+                    quantidade: document.getElementById('Pão de forma').value
+                },
+                {
+                    nomeSimples: 'Pão integral',
+                    nomeDetalhado: 'Pão integral',
+                    quantidade: document.getElementById('Pão integral').value
+                },
+                {
+                    nomeSimples: 'Ovos',
+                    nomeDetalhado: 'Ovos',
+                    quantidade: document.getElementById('Ovos').value
+                },
+                {
+                    nomeSimples: 'Massa de tapioca',
+                    nomeDetalhado: 'Massa de tapioca',
+                    quantidade: document.getElementById('Massa de tapioca').value
+                },
+                {
+                    nomeSimples: 'Nescau',
+                    nomeDetalhado: 'Nescau',
+                    quantidade: document.getElementById('Nescau').value
+                },
+                {
+                    nomeSimples: 'Toddy',
+                    nomeDetalhado: 'Toddy',
+                    quantidade: document.getElementById('Toddy').value
+                },
+                {
+                    nomeSimples: 'Aveia',
+                    nomeDetalhado: 'Aveia',
+                    quantidade: document.getElementById('Aveia').value
+                },
+                {
+                    nomeSimples: 'Papel Toalha',
+                    nomeDetalhado: 'Papel Toalha',
+                    quantidade: document.getElementById('Papel Toalha').value
+                },
+                {
+                    nomeSimples: 'Guardanapo',
+                    nomeDetalhado: 'Guardanapo',
+                    quantidade: document.getElementById('Guardanapo').value
+                },
+                {
+                    nomeSimples: 'Papel higienico',
+                    nomeDetalhado: 'Papel higienico',
+                    quantidade: document.getElementById('Papel higienico').value
+                },
+                {
+                    nomeSimples: 'Sabão em pó',
+                    nomeDetalhado: 'Sabão em pó',
+                    quantidade: document.getElementById('Sabão em pó').value
+                },
+                {
+                    nomeSimples: 'Cera Liquida',
+                    nomeDetalhado: 'Cera Liquida',
+                    quantidade: document.getElementById('Cera Liquida').value
+                },
+                {
+                    nomeSimples: 'Lustra Moveis',
+                    nomeDetalhado: 'Lustra Moveis',
+                    quantidade: document.getElementById('Lustra Moveis').value
+                },
+                {
+                    nomeSimples: 'Limpa Vidros',
+                    nomeDetalhado: 'Limpa Vidros',
+                    quantidade: document.getElementById('Limpa Vidros').value
+                },
+                {
+                    nomeSimples: 'Detergente',
+                    nomeDetalhado: 'Detergente',
+                    quantidade: document.getElementById('Detergente').value
+                },
+                {
+                    nomeSimples: 'Alcool',
+                    nomeDetalhado: 'Alcool',
+                    quantidade: document.getElementById('Alcool').value
+                },
+            ];
+
+            let listaTexto = "";
+            for (const item of itens) {
+                if (item.quantidade > 0) {
+                    // A ordem foi invertida: número antes do item
+                    listaTexto += `${item.quantidade}, ${item.nomeDetalhado}\n`;
+                }
+            }
+
+            const agora = new Date();
+            const opcoes = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            const titulo = "Lista de compra de " + agora.toLocaleDateString('pt-BR', opcoes);
+            const mensagemFinal = "Qualquer dúvida, entre em contato pelo WhatsApp 024 9324 1921"
+
+            const novaJanela = window.open('', '_blank');
+            novaJanela.document.write('<html><head><title>' + titulo + '</title></head><body>');
+            novaJanela.document.write('<h3 id="tituloLista">' + titulo + '</h3>');
+            novaJanela.document.write('<pre id="lista">' + listaTexto + '</pre>');
+            novaJanela.document.write('<p id="mensagemFinal">' + mensagemFinal + '</p>');
+            novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
+            novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\\n" + document.getElementById("lista").textContent + "\\n" + document.getElementById("mensagemFinal").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
+            novaJanela.document.write('</body></html>');
+            novaJanela.document.close();
+        });
+    </script>
+
+</body>
+
+</html>
