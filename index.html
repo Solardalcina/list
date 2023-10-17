@@ -520,20 +520,23 @@
                 }
             }
 
-            const agora = new Date();
-            const opcoes = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            };
-            const titulo = "Lista de compra de " + agora.toLocaleDateString('pt-BR', opcoes);
-            const mensagemFinal = "Qualquer dúvida, entre em contato pelo WhatsApp 024 9324 1921"
+           const agora = new Date();
+const opcoes = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+};
+const titulo = "Lista de compra de " + agora.toLocaleDateString('pt-BR', opcoes);
+const mensagemFinal = "Qualquer dúvida, entre em contato pelo WhatsApp 024 9324 1921";
 
-            const novaJanela = window.open('', '_blank');
-novaJanela.document.write('<html><head><title>' + titulo + '</title><style> #tituloLista { margin-bottom: 20px; } </style></head><body>'); // Adicionado estilo CSS aqui
+const novaJanela = window.open('', '_blank');
+novaJanela.document.write('<html><head><title>' + titulo + '</title>');
+novaJanela.document.write('<meta name="viewport" content="width=device-width, initial-scale=1">'); // Adicionado viewport meta tag
+novaJanela.document.write('<style> body { font-size: 18px; } #tituloLista { margin-bottom: 30px; } #lista, #mensagemFinal { margin-top: 15px; } button { padding: 10px 20px; font-size: 18px; } </style>'); // Estilos ajustados para dispositivos móveis
+novaJanela.document.write('</head><body>');
 novaJanela.document.write('<h3 id="tituloLista">' + titulo + '</h3>');
 novaJanela.document.write('<pre id="lista">' + listaTexto + '</pre>');
 novaJanela.document.write('<p id="mensagemFinal">' + mensagemFinal + '</p>');
@@ -541,6 +544,7 @@ novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>
 novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\\n" + document.getElementById("lista").textContent + "\\n" + document.getElementById("mensagemFinal").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
 novaJanela.document.write('</body></html>');
 novaJanela.document.close();
+
         });
     </script>
 
