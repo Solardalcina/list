@@ -541,7 +541,7 @@ novaJanela.document.write('<h3 id="tituloLista">' + titulo + '</h3>');
 novaJanela.document.write('<pre id="lista">' + listaTexto + '</pre>');
 novaJanela.document.write('<p id="mensagemFinal">' + mensagemFinal + '</p>');
 novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
-novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\\n" + document.getElementById("lista").textContent + "\\n" + document.getElementById("mensagemFinal").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
+novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\\n\\n" + document.getElementById("lista").textContent + "\\n" + document.getElementById("mensagemFinal").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
 novaJanela.document.write('</body></html>');
 novaJanela.document.close();
 
