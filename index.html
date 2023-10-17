@@ -332,7 +332,7 @@
                 },
                 {
                     nomeSimples: 'Requeijao',
-                    nomeDetalhado: 'Requeijao (frimesa, ou superior mais em conta)',
+                    nomeDetalhado: 'Requeijao (frimesa, ou superior)',
                     quantidade: document.getElementById('Requeijao').value
                 },
                  {
@@ -477,7 +477,7 @@
                 },
                 {
                     nomeSimples: 'Papel higienico',
-                    nomeDetalhado: 'Papel Higienico Folha Dupla com 12',
+                    nomeDetalhado: 'Papel Higienico F.Dupla c/12',
                     quantidade: document.getElementById('Papel higienico').value
                 },
                 {
@@ -533,14 +533,14 @@
             const mensagemFinal = "Qualquer dúvida, entre em contato pelo WhatsApp 024 9324 1921"
 
             const novaJanela = window.open('', '_blank');
-            novaJanela.document.write('<html><head><title>' + titulo + '</title></head><body>');
-            novaJanela.document.write('<h3 id="tituloLista">' + titulo + '</h3>');
-            novaJanela.document.write('<pre id="lista">' + listaTexto + '</pre>');
-            novaJanela.document.write('<p id="mensagemFinal">' + mensagemFinal + '</p>');
-            novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
-            novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\\n" + document.getElementById("lista").textContent + "\\n" + document.getElementById("mensagemFinal").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
-            novaJanela.document.write('</body></html>');
-            novaJanela.document.close();
+novaJanela.document.write('<html><head><title>' + titulo + '</title><style> #tituloLista { margin-bottom: 20px; } </style></head><body>'); // Adicionado estilo CSS aqui
+novaJanela.document.write('<h3 id="tituloLista">' + titulo + '</h3>');
+novaJanela.document.write('<pre id="lista">' + listaTexto + '</pre>');
+novaJanela.document.write('<p id="mensagemFinal">' + mensagemFinal + '</p>');
+novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
+novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\\n" + document.getElementById("lista").textContent + "\\n" + document.getElementById("mensagemFinal").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
+novaJanela.document.write('</body></html>');
+novaJanela.document.close();
         });
     </script>
 
