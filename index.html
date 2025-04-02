@@ -1,142 +1,81 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+function incrementar(id) {
+  const input = document.getElementById(id);
+  input.value = parseInt(input.value) + 1;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Lista de Compras</title>
-    <style>
-        .item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+function decrementar(id) {
+  const input = document.getElementById(id);
+  if (parseInt(input.value) > 0) {
+    input.value = parseInt(input.value) - 1;
+  }
+}
 
-        .item button {
-            margin: 0 6px;
-            padding: 8px 12px;
-            font-size: 16px;
-        }
+document.getElementById('listaComprasForm').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-        .item input[type="number"] {
-            width: 45px;
-            padding: 6px;
-            font-size: 16px;
-        }
+  const nomesDetalhados = {
+    'Mussarela': 'Bandeja de Mussarela 500g',
+    'Queijo prato': 'Bandeja de Queijo Prato 500g',
+    'Queijo Minas': 'Queijo Minas',
+    'Requeijao': 'Requeijão (frimesa ou superior)',
+    'Manteiga': 'Manteiga (frimesa ou melhor)',
+    'Milk Mix': 'Milk Mix Frimesa Saquinho',
+    'Iogurte': 'Copinho iogurte natural',
+    'Pão de queijo': 'Pão de Queijo 400g',
+    'Pão de forma': 'Pão de Forma Panco',
+    'Pão integral': 'Pão Integral Panco',
+    'Granola': 'Granola Tradicional 1kg',
+    'Sucrilhos': 'Sucrilhos Superbom',
+    'Aveia': 'Aveia em Flocos Finos',
+    'Massa de tapioca': 'Massa de Tapioca',
+    'Abacaxi': 'Abacaxi',
+    'Hortelã': 'Maço de Hortelã',
+    'Mamão': 'Mamão Formosa',
+    'Melão': 'Melão',
+    'Banana': 'Penca de Banana',
+    'Maracujá': 'Maracujá',
+    'Tomate': 'Tomate Italiano',
+    'Manga': 'Manga mais em conta',
+    'Uva': 'Caixa de Uva Verde sem Caroço',
+    'Maçã': 'Saquinho de Maçã',
+    'Pêra': 'Saquinho de Pêra',
+    'Geléia': 'Geléia',
+    'Nescau': 'Nescau',
+    'Toddy': 'Toddy',
+    'Açucar': 'Açucar refinado 1kg',
+    'Açucar sachê': 'Caixa de açucar sachê',
+    'Ovos': 'Cartela de Ovos c/20',
+    'Papel Toalha': 'Papel Toalha',
+    'Guardanapo': 'Guardanapo Gran Hotel',
+    'Papel higienico': 'Papel Higienico F.Dupla c/12',
+    'Sabão em pó': 'Sabão em Pó',
+    'Cera Liquida': 'Cera Liquida Incolor',
+    'Lustra Moveis': 'Lustra Moveis',
+    'Limpa Vidros': 'Limpa Vidros',
+    'Detergente': 'Detergente Transparente',
+    'Alcool': 'Álcool 70',
+    'Agua sanitaria': 'Água sanitária 5L',
+    'Desinfetante': 'Desinfetante Urca Lavanda',
+    'Lava roupas liquido': 'Lava roupas liquido OMO 3L'
+  };
 
-        .categoria {
-            margin-top: 20px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 10px;
-        }
+  let listaTexto = 'Bom dia, segue a lista de compras:\n\n';
+  for (const id in nomesDetalhados) {
+    const input = document.getElementById(id);
+    if (input && parseInt(input.value) > 0) {
+      listaTexto += `${input.value}, ${nomesDetalhados[id]}\n`;
+    }
+  }
 
-        .btn-maior {
-            padding: 14px 28px;
-            font-size: 18px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-
-<body>
-    <form id="listaComprasForm">
-        <h2>Formulário de Lista de Compras</h2>
-
-        <div class="categoria">
-            <h3>Laticínios</h3>
-            <div class="item">
-                <button type="button" onclick="decrementar('Iogurte')">-</button>
-                <input type="number" id="Iogurte" name="Iogurte" value="0" readonly>
-                <button type="button" onclick="incrementar('Iogurte')">+</button>
-                <label for="Iogurte">Iogurte</label>
-            </div>
-        </div>
-
-        <div class="categoria">
-            <h3>Limpeza</h3>
-            <div class="item">
-                <button type="button" onclick="decrementar('Agua sanitaria')">-</button>
-                <input type="number" id="Agua sanitaria" name="Agua sanitaria" value="0" readonly>
-                <button type="button" onclick="incrementar('Agua sanitaria')">+</button>
-                <label for="Agua sanitaria">Agua sanitaria</label>
-            </div>
-            <div class="item">
-                <button type="button" onclick="decrementar('Desinfetante')">-</button>
-                <input type="number" id="Desinfetante" name="Desinfetante" value="0" readonly>
-                <button type="button" onclick="incrementar('Desinfetante')">+</button>
-                <label for="Desinfetante">Desinfetante</label>
-            </div>
-        </div>
-
-        <input type="submit" value="Gerar Lista" class="btn-maior">
-    </form>
-
-    <script>
-        function incrementar(id) {
-            const input = document.getElementById(id);
-            input.value = parseInt(input.value) + 1;
-        }
-
-        function decrementar(id) {
-            const input = document.getElementById(id);
-            if (parseInt(input.value) > 0) {
-                input.value = parseInt(input.value) - 1;
-            }
-        }
-
-        document.getElementById('listaComprasForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const itens = [
-                {
-                    nomeSimples: 'Agua sanitaria',
-                    nomeDetalhado: 'Agua sanitaria 5L',
-                    quantidade: document.getElementById('Agua sanitaria').value
-                },
-                {
-                    nomeSimples: 'Desinfetante',
-                    nomeDetalhado: 'Desinfetante Urca Lavanda',
-                    quantidade: document.getElementById('Desinfetante').value
-                },
-                {
-                    nomeSimples: 'Iogurte',
-                    nomeDetalhado: 'Copinho iogurte natural',
-                    quantidade: document.getElementById('Iogurte').value
-                }
-            ];
-
-            let listaTexto = "Bom dia!\n\n";
-            for (const item of itens) {
-                if (item.quantidade > 0) {
-                    listaTexto += `${item.quantidade}, ${item.nomeDetalhado}\n`;
-                }
-            }
-
-            const agora = new Date();
-            const opcoes = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            };
-            const titulo = "Lista de compra de " + agora.toLocaleDateString('pt-BR', opcoes);
-
-            const novaJanela = window.open('', '_blank');
-            novaJanela.document.write('<html><head><title>' + titulo + '</title>');
-            novaJanela.document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
-            novaJanela.document.write('<style> body { font-size: 18px; } #tituloLista { margin-bottom: 30px; } #lista { margin-top: 15px; } button { padding: 10px 20px; font-size: 18px; } </style>');
-            novaJanela.document.write('</head><body>');
-            novaJanela.document.write('<h3 id="tituloLista">' + titulo + '</h3>');
-            novaJanela.document.write('<pre id="lista">' + listaTexto + '</pre>');
-            novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
-            novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\n\n" + document.getElementById("lista").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
-            novaJanela.document.write('</body></html>');
-            novaJanela.document.close();
-        });
-    </script>
-</body>
-
-</html>
+  const novaJanela = window.open('', '_blank');
+  novaJanela.document.write('<html><head><title>Lista de Compras</title>');
+  novaJanela.document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
+  novaJanela.document.write('<style> body { font-size: 18px; padding: 20px; font-family: Arial; } h3 { margin-bottom: 20px; } pre { white-space: pre-wrap; } button { margin-top: 20px; padding: 10px 20px; font-size: 16px; } </style>');
+  novaJanela.document.write('</head><body>');
+  novaJanela.document.write('<h3>Lista de Compras</h3>');
+  novaJanela.document.write('<pre>' + listaTexto + '</pre>');
+  novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
+  novaJanela.document.write('<script>function copiarLista() { const conteudo = document.querySelector(\'pre\').innerText; const tempInput = document.createElement(\'textarea\'); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand(\'copy\'); document.body.removeChild(tempInput); alert(\'Lista copiada!\'); }<\/script>');
+  novaJanela.document.write('</body></html>');
+  novaJanela.document.close();
+});
