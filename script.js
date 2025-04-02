@@ -19,10 +19,9 @@
             { nomeSimples: 'Queijo prato', nomeDetalhado: 'Bandeja de Queijo Prato 500g', quantidade: document.getElementById('Queijo prato').value },
             { nomeSimples: 'Queijo Minas', nomeDetalhado: 'Queijo Minas', quantidade: document.getElementById('Queijo Minas').value },
             { nomeSimples: 'Requeijao', nomeDetalhado: 'Requeijao (frimesa, ou superior)', quantidade: document.getElementById('Requeijao').value },
-            { nomeSimples: 'Milk Mix', nomeDetalhado: 'Milk Mix Frimesa Saquinho', quantidade: document.getElementById('Milk Mix').value },
-            { nomeSimples: 'Iogurte', nomeDetalhado: 'Copinho iogurte natural', quantidade: document.getElementById('Iogurte').value },
-            { nomeSimples: 'Pão de queijo', nomeDetalhado: 'Pão de Queijo 400g mais em conta', quantidade: document.getElementById('Pão de queijo').value },
             { nomeSimples: 'Manteiga', nomeDetalhado: 'Manteiga (frimesa taubate ou outra melhor)', quantidade: document.getElementById('Manteiga').value },
+            { nomeSimples: 'Milk Mix', nomeDetalhado: 'Milk Mix Frimesa Saquinho', quantidade: document.getElementById('Milk Mix').value },
+            { nomeSimples: 'Pão de queijo', nomeDetalhado: 'Pão de Queijo 400g mais em conta', quantidade: document.getElementById('Pão de queijo').value },
             { nomeSimples: 'Abacaxi', nomeDetalhado: 'Abacaxi', quantidade: document.getElementById('Abacaxi').value },
             { nomeSimples: 'Hortelã', nomeDetalhado: 'Maço de Hortelã', quantidade: document.getElementById('Hortelã').value },
             { nomeSimples: 'Mamão', nomeDetalhado: 'Mamão Formosa', quantidade: document.getElementById('Mamão').value },
@@ -78,7 +77,7 @@
         novaJanela.document.write('<h3 id="tituloLista">' + titulo + '</h3>');
         novaJanela.document.write('<pre id="lista">' + listaTexto + '</pre>');
         novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
-        novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\\n\\n" + document.getElementById("lista").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
+        novaJanela.document.write('<script>function copiarLista() { const conteudo = document.getElementById("tituloLista").textContent + "\n\n" + document.getElementById("lista").textContent; const tempInput = document.createElement("textarea"); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy"); document.body.removeChild(tempInput); alert("Lista copiada!"); }<\/script>');
         novaJanela.document.write('</body></html>');
         novaJanela.document.close();
     });
