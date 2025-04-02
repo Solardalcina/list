@@ -112,7 +112,9 @@
 </head>
 <body>
     <h2>Lista de Compras</h2>
-    <form id="listaComprasForm"></form>
+    <form id="listaComprasForm">
+        <!-- Itens serão inseridos aqui pelo JavaScript -->
+    </form>
     <button class="btn-maior" type="submit" form="listaComprasForm">Gerar Lista</button>
 
     <script>
@@ -162,45 +164,74 @@
             { nomeSimples: 'Lava roupas liquido', nomeDetalhado: 'Lava roupas liquido OMO 3L', categoria: 'Limpeza' }
         ];
 
-        const form = document.getElementById("listaComprasForm");
-        const categoriasUnicas = [...new Set(itens.map(item => item.categoria))];
-        categoriasUnicas.forEach(cat => {
-            const divCategoria = document.createElement("div");
-            divCategoria.className = "categoria";
-            divCategoria.innerHTML = `<h3>${cat}</h3>`;
-            itens.filter(i => i.categoria === cat).forEach(item => {
-                const div = document.createElement("div");
-                div.className = "item";
-                div.innerHTML = `
-                    <button type="button" aria-label="Diminuir ${item.nomeSimples}" onclick="decrementar('${item.nomeSimples}')">-</button>
-                    <input type="number" id="${item.nomeSimples}" name="${item.nomeSimples}" value="0" readonly>
-                    <button type="button" aria-label="Aumentar ${item.nomeSimples}" onclick="incrementar('${item.nomeSimples}')">+</button>
-                    <label for="${item.nomeSimples}">${item.nomeSimples}</label>
-                `;
-                divCategoria.appendChild(div);
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById("listaComprasForm");
+            const categoriasUnicas = [...new Set(itens.map(item => item.categoria))];
+            
+            categoriasUnicas.forEach(cat => {
+                const divCategoria = document.createElement("div");
+                divCategoria.className = "categoria";
+                divCategoria.innerHTML = `<h3>${cat}</h3>`;
+                
+                itens.filter(i => i.categoria === cat).forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "item";
+                    div.innerHTML = `
+                        <button type="button" aria-label="Diminuir ${item.nomeSimples}" onclick="decrementar('${item.nomeSimples}')">-</button>
+                        <input type="number" id="${item.nomeSimples}" name="${item.nomeSimples}" value="0" readonly>
+                        <button type="button" aria-label="Aumentar ${item.nomeSimples}" onclick="incrementar('${item.nomeSimples}')">+</button>
+                        <label for="${item.nomeSimples}">${item.nomeSimples}</label>
+                    `;
+                    divCategoria.appendChild(div);
+                });
+                form.appendChild(divCategoria);
             });
-            form.appendChild(divCategoria);
-        });
 
-        form.addEventListener("submit", function(e) {
-            e.preventDefault();
-            let listaTexto = "Bom dia, segue a lista:\n\n";
-            itens.forEach(item => {
-                const quantidade = parseInt(document.getElementById(item.nomeSimples).value) || 0;
-                if (quantidade > 0) {
-                    listaTexto += `${quantidade}, ${item.nomeDetalhado}\n`;
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                let listaTexto = "Bom dia, segue a lista:\n\n";
+                itens.forEach(item => {
+                    const quantidade = parseInt(document.getElementById(item.nomeSimples).value) || 0;
+                    if (quantidade > 0) {
+                        listaTexto += `${quantidade}, ${item.nomeDetalhado}\n`;
+                    }
+                });
+
+                const novaJanela = window.open('', '_blank');
+                if (novaJanela) {
+                    novaJanela.document.write(`
+                        <html>
+                        <head>
+                            <title>Lista de Compras</title>
+                            <meta name="viewport" content="width=device-width, initial-scale=1">
+                            <style>
+                                body { font-family: "Segoe UI", Arial, sans-serif; padding: 20px; background-color: #f0f2f5; color: #333; }
+                                pre { white-space: pre-wrap; font-size: 1.1rem; }
+                                button { width: 100%; max-width: 300px; padding: 12px; margin: 20px auto; display: block; border: none; border-radius: 8px; background-color: #1a73e8; color: #fff; font-size: 1.1rem; cursor: pointer; }
+                                button:hover { background-color: #1557b0; }
+                            </style>
+                        </head>
+                        <body>
+                            <pre>${listaTexto}</pre>
+                            <button onclick="copiarLista()">Copiar Lista</button>
+                            <script>
+                                async function copiarLista() {
+                                    try {
+                                        await navigator.clipboard.writeText(document.querySelector("pre").innerText);
+                                        alert("Lista copiada!");
+                                    } catch (e) {
+                                        alert("Erro ao copiar: " + e);
+                                    }
+                                }
+                            </script>
+                        </body>
+                        </html>
+                    `);
+                    novaJanela.document.close();
+                } else {
+                    alert("Por favor, permita pop-ups para ver a lista.");
                 }
             });
-
-            const novaJanela = window.open('', '_blank');
-            novaJanela.document.write('<html><head><title>Lista de Compras</title>');
-            novaJanela.document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
-            novaJanela.document.write('<style>body{font-family:"Segoe UI",Arial,sans-serif;padding:20px;background-color:#f0f2f5;color:#333;}pre{white-space:pre-wrap;font-size:1.1rem;}button{width:100%;max-width:300px;padding:12px;margin:20px auto;display:block;border:none;border-radius:8px;background-color:#1a73e8;color:#fff;font-size:1.1rem;cursor:pointer;}button:hover{background-color:#1557b0;}</style>');
-            novaJanela.document.write('</head><body><pre>' + listaTexto + '</pre>');
-            novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
-            novaJanela.document.write('<script>async function copiarLista(){try{await navigator.clipboard.writeText(document.querySelector("pre").innerText);alert("Lista copiada!");}catch(e){alert("Erro ao copiar: "+e);}}</script>');
-            novaJanela.document.write('</body></html>');
-            novaJanela.document.close();
         });
 
         function incrementar(id) {
