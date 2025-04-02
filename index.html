@@ -1,81 +1,172 @@
-function incrementar(id) {
-  const input = document.getElementById(id);
-  input.value = parseInt(input.value) + 1;
-}
+<!DOCTYPE html>
+<html lang="pt-br">
 
-function decrementar(id) {
-  const input = document.getElementById(id);
-  if (parseInt(input.value) > 0) {
-    input.value = parseInt(input.value) - 1;
-  }
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
 
-document.getElementById('listaComprasForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+        h2, h3 {
+            color: #333;
+        }
 
-  const nomesDetalhados = {
-    'Mussarela': 'Bandeja de Mussarela 500g',
-    'Queijo prato': 'Bandeja de Queijo Prato 500g',
-    'Queijo Minas': 'Queijo Minas',
-    'Requeijao': 'Requeijão (frimesa ou superior)',
-    'Manteiga': 'Manteiga (frimesa ou melhor)',
-    'Milk Mix': 'Milk Mix Frimesa Saquinho',
-    'Iogurte': 'Copinho iogurte natural',
-    'Pão de queijo': 'Pão de Queijo 400g',
-    'Pão de forma': 'Pão de Forma Panco',
-    'Pão integral': 'Pão Integral Panco',
-    'Granola': 'Granola Tradicional 1kg',
-    'Sucrilhos': 'Sucrilhos Superbom',
-    'Aveia': 'Aveia em Flocos Finos',
-    'Massa de tapioca': 'Massa de Tapioca',
-    'Abacaxi': 'Abacaxi',
-    'Hortelã': 'Maço de Hortelã',
-    'Mamão': 'Mamão Formosa',
-    'Melão': 'Melão',
-    'Banana': 'Penca de Banana',
-    'Maracujá': 'Maracujá',
-    'Tomate': 'Tomate Italiano',
-    'Manga': 'Manga mais em conta',
-    'Uva': 'Caixa de Uva Verde sem Caroço',
-    'Maçã': 'Saquinho de Maçã',
-    'Pêra': 'Saquinho de Pêra',
-    'Geléia': 'Geléia',
-    'Nescau': 'Nescau',
-    'Toddy': 'Toddy',
-    'Açucar': 'Açucar refinado 1kg',
-    'Açucar sachê': 'Caixa de açucar sachê',
-    'Ovos': 'Cartela de Ovos c/20',
-    'Papel Toalha': 'Papel Toalha',
-    'Guardanapo': 'Guardanapo Gran Hotel',
-    'Papel higienico': 'Papel Higienico F.Dupla c/12',
-    'Sabão em pó': 'Sabão em Pó',
-    'Cera Liquida': 'Cera Liquida Incolor',
-    'Lustra Moveis': 'Lustra Moveis',
-    'Limpa Vidros': 'Limpa Vidros',
-    'Detergente': 'Detergente Transparente',
-    'Alcool': 'Álcool 70',
-    'Agua sanitaria': 'Água sanitária 5L',
-    'Desinfetante': 'Desinfetante Urca Lavanda',
-    'Lava roupas liquido': 'Lava roupas liquido OMO 3L'
-  };
+        .categoria {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-  let listaTexto = 'Bom dia, segue a lista de compras:\n\n';
-  for (const id in nomesDetalhados) {
-    const input = document.getElementById(id);
-    if (input && parseInt(input.value) > 0) {
-      listaTexto += `${input.value}, ${nomesDetalhados[id]}\n`;
-    }
-  }
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-  const novaJanela = window.open('', '_blank');
-  novaJanela.document.write('<html><head><title>Lista de Compras</title>');
-  novaJanela.document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
-  novaJanela.document.write('<style> body { font-size: 18px; padding: 20px; font-family: Arial; } h3 { margin-bottom: 20px; } pre { white-space: pre-wrap; } button { margin-top: 20px; padding: 10px 20px; font-size: 16px; } </style>');
-  novaJanela.document.write('</head><body>');
-  novaJanela.document.write('<h3>Lista de Compras</h3>');
-  novaJanela.document.write('<pre>' + listaTexto + '</pre>');
-  novaJanela.document.write('<button onclick="copiarLista()">Copiar Lista</button>');
-  novaJanela.document.write('<script>function copiarLista() { const conteudo = document.querySelector(\'pre\').innerText; const tempInput = document.createElement(\'textarea\'); tempInput.value = conteudo; document.body.appendChild(tempInput); tempInput.select(); document.execCommand(\'copy\'); document.body.removeChild(tempInput); alert(\'Lista copiada!\'); }<\/script>');
-  novaJanela.document.write('</body></html>');
-  novaJanela.document.close();
-});
+        .item button {
+            padding: 6px 10px;
+            font-size: 16px;
+        }
+
+        .item input[type="number"] {
+            width: 40px;
+            text-align: center;
+            margin: 0 8px;
+            font-size: 16px;
+        }
+
+        .btn-maior {
+            padding: 12px 24px;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-maior:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Formulário de Lista de Compras</h2>
+    <form id="listaComprasForm"></form>
+    <button class="btn-maior" type="submit" form="listaComprasForm">Gerar Lista</button>
+
+    <script>
+        const itens = [
+            { nomeSimples: 'Mussarela', nomeDetalhado: 'Bandeja de Mussarela 500g', categoria: 'Laticínios' },
+            { nomeSimples: 'Queijo prato', nomeDetalhado: 'Bandeja de Queijo Prato 500g', categoria: 'Laticínios' },
+            { nomeSimples: 'Queijo Minas', nomeDetalhado: 'Queijo Minas', categoria: 'Laticínios' },
+            { nomeSimples: 'Requeijao', nomeDetalhado: 'Requeijao (frimesa, ou superior)', categoria: 'Laticínios' },
+            { nomeSimples: 'Manteiga', nomeDetalhado: 'Manteiga (frimesa taubate ou outra melhor)', categoria: 'Laticínios' },
+            { nomeSimples: 'Milk Mix', nomeDetalhado: 'Milk Mix Frimesa Saquinho', categoria: 'Laticínios' },
+            { nomeSimples: 'Iogurte', nomeDetalhado: 'Copinho iogurte natural', categoria: 'Laticínios' },
+
+            { nomeSimples: 'Pão de queijo', nomeDetalhado: 'Pão de Queijo 400g mais em conta', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Pão de forma', nomeDetalhado: 'Pão de Forma Panco', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Pão integral', nomeDetalhado: 'Pão Integral Panco', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Ovos', nomeDetalhado: 'Cartela de Ovos c/20', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Massa de tapioca', nomeDetalhado: 'Massa de Tapioca', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Nescau', nomeDetalhado: 'Nescau', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Toddy', nomeDetalhado: 'Toddy', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Aveia', nomeDetalhado: 'Aveia em Flocos Finos', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Geléia', nomeDetalhado: 'Geléia', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Sucrilhos', nomeDetalhado: 'Sucrilhos Superbom', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Granola', nomeDetalhado: 'Granola Tradicional 1kg', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Açucar', nomeDetalhado: 'Açucar refinado 1kg', categoria: 'Café da Manhã' },
+            { nomeSimples: 'Açucar sachê', nomeDetalhado: 'Caixa de açucar sachê', categoria: 'Café da Manhã' },
+
+            { nomeSimples: 'Abacaxi', nomeDetalhado: 'Abacaxi', categoria: 'Frutas' },
+            { nomeSimples: 'Hortelã', nomeDetalhado: 'Maço de Hortelã', categoria: 'Frutas' },
+            { nomeSimples: 'Mamão', nomeDetalhado: 'Mamão Formosa', categoria: 'Frutas' },
+            { nomeSimples: 'Melão', nomeDetalhado: 'Melão', categoria: 'Frutas' },
+            { nomeSimples: 'Banana', nomeDetalhado: 'Penca de Banana', categoria: 'Frutas' },
+            { nomeSimples: 'Maracujá', nomeDetalhado: 'Maracujá', categoria: 'Frutas' },
+            { nomeSimples: 'Tomate kg', nomeDetalhado: 'Tomate Italiano', categoria: 'Frutas' },
+            { nomeSimples: 'Manga', nomeDetalhado: 'Manga mais em conta', categoria: 'Frutas' },
+            { nomeSimples: 'Uva', nomeDetalhado: 'Caixa de Uva Verde sem Caroço', categoria: 'Frutas' },
+            { nomeSimples: 'Maçã', nomeDetalhado: 'Saquinho de Maçã', categoria: 'Frutas' },
+            { nomeSimples: 'Pêra', nomeDetalhado: 'Saquinho de Pêra', categoria: 'Frutas' },
+
+            { nomeSimples: 'Papel Toalha', nomeDetalhado: 'Papel Toalha', categoria: 'Limpeza' },
+            { nomeSimples: 'Guardanapo', nomeDetalhado: 'Guardanapo Gran Hotel', categoria: 'Limpeza' },
+            { nomeSimples: 'Papel higienico', nomeDetalhado: 'Papel Higienico F.Dupla c/12', categoria: 'Limpeza' },
+            { nomeSimples: 'Sabão em pó', nomeDetalhado: 'Sabão em Pó', categoria: 'Limpeza' },
+            { nomeSimples: 'Cera Liquida', nomeDetalhado: 'Cera Liquida Incolor', categoria: 'Limpeza' },
+            { nomeSimples: 'Lustra Moveis', nomeDetalhado: 'Lustra Moveis', categoria: 'Limpeza' },
+            { nomeSimples: 'Limpa Vidros', nomeDetalhado: 'Limpa Vidros', categoria: 'Limpeza' },
+            { nomeSimples: 'Detergente', nomeDetalhado: 'Detergente Transparente', categoria: 'Limpeza' },
+            { nomeSimples: 'Alcool', nomeDetalhado: 'Alcool 70', categoria: 'Limpeza' },
+            { nomeSimples: 'Agua sanitaria', nomeDetalhado: 'Água sanitária 5L', categoria: 'Limpeza' },
+            { nomeSimples: 'Desinfetante', nomeDetalhado: 'Desinfetante Urca Lavanda', categoria: 'Limpeza' },
+            { nomeSimples: 'Lava roupas liquido', nomeDetalhado: 'Lava roupas liquido OMO 3L', categoria: 'Limpeza' },
+        ];
+
+        const form = document.getElementById("listaComprasForm");
+
+        const categoriasUnicas = [...new Set(itens.map(item => item.categoria))];
+        categoriasUnicas.forEach(cat => {
+            const divCategoria = document.createElement("div");
+            divCategoria.className = "categoria";
+            divCategoria.innerHTML = `<h3>${cat}</h3>`;
+
+            itens.filter(i => i.categoria === cat).forEach(item => {
+                const div = document.createElement("div");
+                div.className = "item";
+                div.innerHTML = `
+                    <button type="button" onclick="decrementar('${item.nomeSimples}')">-</button>
+                    <input type="number" id="${item.nomeSimples}" name="${item.nomeSimples}" value="0" readonly>
+                    <button type="button" onclick="incrementar('${item.nomeSimples}')">+</button>
+                    <label for="${item.nomeSimples}">${item.nomeSimples}</label>
+                `;
+                divCategoria.appendChild(div);
+            });
+
+            form.appendChild(divCategoria);
+        });
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            let listaTexto = "Bom dia, segue a lista:\n\n";
+
+            itens.forEach(item => {
+                const quantidade = parseInt(document.getElementById(item.nomeSimples).value);
+                if (quantidade > 0) {
+                    listaTexto += `${quantidade}, ${item.nomeDetalhado}\n`;
+                }
+            });
+
+            const novaJanela = window.open('', '_blank');
+            novaJanela.document.write('<html><head><title>Lista de Compras</title>');
+            novaJanela.document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
+            novaJanela.document.write('<style>body{font-size:18px;padding:20px;}pre{white-space:pre-wrap;}</style>');
+            novaJanela.document.write('</head><body><pre>' + listaTexto + '</pre></body></html>');
+            novaJanela.document.close();
+        });
+
+        function incrementar(id) {
+            const input = document.getElementById(id);
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrementar(id) {
+            const input = document.getElementById(id);
+            if (parseInt(input.value) > 0) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+    </script>
+</body>
+</html>
