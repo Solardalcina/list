@@ -28,7 +28,6 @@ const itens = [
   { nomeSimples: 'Agua sanitaria', nomeDetalhado: 'Água sanitária 5L', categoria: 'Limpeza' },
   { nomeSimples: 'Desinfetante', nomeDetalhado: 'Desinfetante Urca Lavanda', categoria: 'Limpeza' },
   { nomeSimples: 'Lava roupas liquido', nomeDetalhado: 'Lava roupas liquido OMO 3L', categoria: 'Limpeza' },
-  { nomeSimples: 'Lousa', nomeDetalhado: 'Lousa', categoria: 'Outros' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
