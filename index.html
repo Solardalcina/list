@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             padding: 20px;
@@ -17,17 +19,20 @@
             color: #333;
             line-height: 1.6;
         }
+
         h2 {
             font-size: 2rem;
             margin-bottom: 20px;
             text-align: center;
             color: #1a73e8;
         }
+
         h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: #444;
         }
+
         .categoria {
             margin-bottom: 25px;
             padding: 15px;
@@ -35,16 +40,19 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
+
         .item {
             display: flex;
             align-items: center;
             margin-bottom: 12px;
             gap: 10px;
         }
+
         .item label {
             flex: 1;
             font-size: 1rem;
         }
+
         .item button {
             width: 32px;
             height: 32px;
@@ -56,9 +64,11 @@
             cursor: pointer;
             transition: background-color 0.2s;
         }
+
         .item button:hover {
             background-color: #1557b0;
         }
+
         .item input[type="number"] {
             width: 50px;
             height: 32px;
@@ -68,6 +78,7 @@
             font-size: 1rem;
             background-color: #fafafa;
         }
+
         .btn-maior {
             display: block;
             width: 100%;
@@ -82,27 +93,35 @@
             cursor: pointer;
             transition: background-color 0.2s;
         }
+
         .btn-maior:hover {
             background-color: #1557b0;
         }
+
         @media (max-width: 600px) {
             body {
                 padding: 10px;
             }
+
             h2 {
                 font-size: 1.5rem;
             }
+
             h3 {
                 font-size: 1.2rem;
             }
+
             .item label {
                 font-size: 0.9rem;
             }
-            .item button, .item input[type="number"] {
+
+            .item button,
+            .item input[type="number"] {
                 width: 28px;
                 height: 28px;
                 font-size: 1rem;
             }
+
             .btn-maior {
                 font-size: 1rem;
                 padding: 10px;
@@ -110,142 +129,15 @@
         }
     </style>
 </head>
+
 <body>
     <h2>Lista de Compras</h2>
     <form id="listaComprasForm">
-        <!-- Itens serão inseridos aqui pelo JavaScript -->
+        <!-- Os itens serão gerados automaticamente pelo JavaScript -->
     </form>
     <button class="btn-maior" type="submit" form="listaComprasForm">Gerar Lista</button>
 
-    <script>
-        const itens = [
-            { nomeSimples: 'Mussarela', nomeDetalhado: 'Bandeja de Mussarela 500g', categoria: 'Laticínios' },
-            { nomeSimples: 'Queijo prato', nomeDetalhado: 'Bandeja de Queijo Prato 500g', categoria: 'Laticínios' },
-            { nomeSimples: 'Queijo Minas', nomeDetalhado: 'Queijo Minas', categoria: 'Laticínios' },
-            { nomeSimples: 'Requeijao', nomeDetalhado: 'Requeijao (frimesa, ou superior)', categoria: 'Laticínios' },
-            { nomeSimples: 'Manteiga', nomeDetalhado: 'Manteiga (frimesa taubate ou outra melhor)', categoria: 'Laticínios' },
-            { nomeSimples: 'Milk Mix', nomeDetalhado: 'Milk Mix Frimesa Saquinho', categoria: 'Laticínios' },
-            { nomeSimples: 'Iogurte', nomeDetalhado: 'Copinho iogurte natural', categoria: 'Laticínios' },
-            { nomeSimples: 'Pão de queijo', nomeDetalhado: 'Pão de Queijo 400g mais em conta', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Pão de forma', nomeDetalhado: 'Pão de Forma Panco', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Pão integral', nomeDetalhado: 'Pão Integral Panco', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Ovos', nomeDetalhado: 'Cartela de Ovos c/20', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Massa de tapioca', nomeDetalhado: 'Massa de Tapioca', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Nescau', nomeDetalhado: 'Nescau', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Toddy', nomeDetalhado: 'Toddy', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Aveia', nomeDetalhado: 'Aveia em Flocos Finos', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Geléia', nomeDetalhado: 'Geléia', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Sucrilhos', nomeDetalhado: 'Sucrilhos Superbom', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Granola', nomeDetalhado: 'Granola Tradicional 1kg', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Açucar', nomeDetalhado: 'Açucar refinado 1kg', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Açucar sachê', nomeDetalhado: 'Caixa de açucar sachê', categoria: 'Café da Manhã' },
-            { nomeSimples: 'Abacaxi', nomeDetalhado: 'Abacaxi', categoria: 'Frutas' },
-            { nomeSimples: 'Hortelã', nomeDetalhado: 'Maço de Hortelã', categoria: 'Frutas' },
-            { nomeSimples: 'Mamão', nomeDetalhado: 'Mamão Formosa', categoria: 'Frutas' },
-            { nomeSimples: 'Melão', nomeDetalhado: 'Melão', categoria: 'Frutas' },
-            { nomeSimples: 'Banana', nomeDetalhado: 'Penca de Banana', categoria: 'Frutas' },
-            { nomeSimples: 'Maracujá', nomeDetalhado: 'Maracujá', categoria: 'Frutas' },
-            { nomeSimples: 'Tomate kg', nomeDetalhado: 'Tomate Italiano', categoria: 'Frutas' },
-            { nomeSimples: 'Manga', nomeDetalhado: 'Manga mais em conta', categoria: 'Frutas' },
-            { nomeSimples: 'Uva', nomeDetalhado: 'Caixa de Uva Verde sem Caroço', categoria: 'Frutas' },
-            { nomeSimples: 'Maçã', nomeDetalhado: 'Saquinho de Maçã', categoria: 'Frutas' },
-            { nomeSimples: 'Pêra', nomeDetalhado: 'Saquinho de Pêra', categoria: 'Frutas' },
-            { nomeSimples: 'Papel Toalha', nomeDetalhado: 'Papel Toalha', categoria: 'Limpeza' },
-            { nomeSimples: 'Guardanapo', nomeDetalhado: 'Guardanapo Gran Hotel', categoria: 'Limpeza' },
-            { nomeSimples: 'Papel higienico', nomeDetalhado: 'Papel Higienico F.Dupla c/12', categoria: 'Limpeza' },
-            { nomeSimples: 'Sabão em pó', nomeDetalhado: 'Sabão em Pó', categoria: 'Limpeza' },
-            { nomeSimples: 'Cera Liquida', nomeDetalhado: 'Cera Liquida Incolor', categoria: 'Limpeza' },
-            { nomeSimples: 'Lustra Moveis', nomeDetalhado: 'Lustra Moveis', categoria: 'Limpeza' },
-            { nomeSimples: 'Limpa Vidros', nomeDetalhado: 'Limpa Vidros', categoria: 'Limpeza' },
-            { nomeSimples: 'Detergente', nomeDetalhado: 'Detergente Transparente', categoria: 'Limpeza' },
-            { nomeSimples: 'Alcool', nomeDetalhado: 'Alcool 70', categoria: 'Limpeza' },
-            { nomeSimples: 'Agua sanitaria', nomeDetalhado: 'Água sanitária 5L', categoria: 'Limpeza' },
-            { nomeSimples: 'Desinfetante', nomeDetalhado: 'Desinfetante Urca Lavanda', categoria: 'Limpeza' },
-            { nomeSimples: 'Lava roupas liquido', nomeDetalhado: 'Lava roupas liquido OMO 3L', categoria: 'Limpeza' }
-        ];
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById("listaComprasForm");
-            const categoriasUnicas = [...new Set(itens.map(item => item.categoria))];
-            
-            categoriasUnicas.forEach(cat => {
-                const divCategoria = document.createElement("div");
-                divCategoria.className = "categoria";
-                divCategoria.innerHTML = `<h3>${cat}</h3>`;
-                
-                itens.filter(i => i.categoria === cat).forEach(item => {
-                    const div = document.createElement("div");
-                    div.className = "item";
-                    div.innerHTML = `
-                        <button type="button" aria-label="Diminuir ${item.nomeSimples}" onclick="decrementar('${item.nomeSimples}')">-</button>
-                        <input type="number" id="${item.nomeSimples}" name="${item.nomeSimples}" value="0" readonly>
-                        <button type="button" aria-label="Aumentar ${item.nomeSimples}" onclick="incrementar('${item.nomeSimples}')">+</button>
-                        <label for="${item.nomeSimples}">${item.nomeSimples}</label>
-                    `;
-                    divCategoria.appendChild(div);
-                });
-                form.appendChild(divCategoria);
-            });
-
-            form.addEventListener("submit", function(e) {
-                e.preventDefault();
-                let listaTexto = "Bom dia, segue a lista:\n\n";
-                itens.forEach(item => {
-                    const quantidade = parseInt(document.getElementById(item.nomeSimples).value) || 0;
-                    if (quantidade > 0) {
-                        listaTexto += `${quantidade}, ${item.nomeDetalhado}\n`;
-                    }
-                });
-
-                const novaJanela = window.open('', '_blank');
-                if (novaJanela) {
-                    novaJanela.document.write(`
-                        <html>
-                        <head>
-                            <title>Lista de Compras</title>
-                            <meta name="viewport" content="width=device-width, initial-scale=1">
-                            <style>
-                                body { font-family: "Segoe UI", Arial, sans-serif; padding: 20px; background-color: #f0f2f5; color: #333; }
-                                pre { white-space: pre-wrap; font-size: 1.1rem; }
-                                button { width: 100%; max-width: 300px; padding: 12px; margin: 20px auto; display: block; border: none; border-radius: 8px; background-color: #1a73e8; color: #fff; font-size: 1.1rem; cursor: pointer; }
-                                button:hover { background-color: #1557b0; }
-                            </style>
-                        </head>
-                        <body>
-                            <pre>${listaTexto}</pre>
-                            <button onclick="copiarLista()">Copiar Lista</button>
-                            <script>
-                                async function copiarLista() {
-                                    try {
-                                        await navigator.clipboard.writeText(document.querySelector("pre").innerText);
-                                        alert("Lista copiada!");
-                                    } catch (e) {
-                                        alert("Erro ao copiar: " + e);
-                                    }
-                                }
-                            </script>
-                        </body>
-                        </html>
-                    `);
-                    novaJanela.document.close();
-                } else {
-                    alert("Por favor, permita pop-ups para ver a lista.");
-                }
-            });
-        });
-
-        function incrementar(id) {
-            const input = document.getElementById(id);
-            input.value = (input.value ? parseInt(input.value) : 0) + 1;
-        }
-
-        function decrementar(id) {
-            const input = document.getElementById(id);
-            const valor = input.value ? parseInt(input.value) : 0;
-            if (valor > 0) {
-                input.value = valor - 1;
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
