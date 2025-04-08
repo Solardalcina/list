@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor QR Code NF-e</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        #reader {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+        #resultado {
+            margin-top: 20px;
+            word-break: break-all;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📷 Leitor QR Code NF-e</h2>
+
+    <div id="reader"></div>
+
+    <div id="resultado">Nenhum QR code escaneado ainda.</div>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+        const resultado = document.getElementById('resultado');
+
+        function onScanSuccess(qrCodeMessage) {
+            resultado.innerText = "✅ QR Code escaneado: " + qrCodeMessage;
+        }
+
+        function onScanError(errorMessage) {
+            // Ignora erros momentâneos de leitura
+        }
+
+        const html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", 
+            { fps: 10, qrbox: 250 },
+            false
+        );
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script>
+
+</body>
+</html>
